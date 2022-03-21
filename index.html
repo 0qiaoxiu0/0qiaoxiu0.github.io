@@ -57,7 +57,7 @@ geolocation.getCurrentPosition(function(r){
 		alert(e.point.lng + ", " + e.point.lat);
 			var mk=new BMap.Marker(e.point);
 			map.addOverlay(mk);
-		window.location.href='uniwebview://sendlnglat?lng=e.point.lng&lat=e.point.lat'
+		window.location.href='uniwebview://sendlnglat?lng=&lat='+e.point.lng+e.point.lat
 	}
 	map.addEventListener("click", showInfo);	
 </script>  
