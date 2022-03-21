@@ -50,16 +50,23 @@ geolocation.getCurrentPosition(function(r){
 		alert('failed'+this.getStatus());
 	}        
 });  
-
+/*
 //点击显示坐标和点
 	function showInfo(e){
 		//map.clearOverlays();
 		alert(e.point.lng + ", " + e.point.lat);
 			var mk=new BMap.Marker(e.point);
 			map.addOverlay(mk);
-		window.location.href='uniwebview://sendlnglat?lng=&lat='+e.point.lng+e.point.lat
+		window.location.href='uniwebview://sendlng?lng='+e.point.lng
+		window.location.href='uniwebview://sendlat?lat='+e.point.lat
 	}
-	map.addEventListener("click", showInfo);	
+	map.addEventListener("click", showInfo);
+*/
+//圆形区域检索
+var circle=new BMap.Circle(point,1000,{fillColor:"",strokeWeight: 1 ,fillOpacity: 0.3, strokeOpacity: 0.3});
+map.addOverlay(circle);
+var local =  new BMap.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});  
+	local.searchNearby('景区',point,1000);	
 </script>  
 </body>  
 </html>
