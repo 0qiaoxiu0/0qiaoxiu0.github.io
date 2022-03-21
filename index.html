@@ -50,7 +50,6 @@ geolocation.getCurrentPosition(function(r){
 		alert('failed'+this.getStatus());
 	}        
 });  
-/*
 //点击显示坐标和点
 	function showInfo(e){
 		//map.clearOverlays();
@@ -61,7 +60,6 @@ geolocation.getCurrentPosition(function(r){
 		window.location.href='uniwebview://sendlat?lat='+e.point.lat
 	}
 	map.addEventListener("click", showInfo);
-*/
 //圆形区域检索
 var circle=new BMap.Circle(point,1000,{fillColor:"",strokeWeight: 1 ,fillOpacity: 0.3, strokeOpacity: 0.3});
 map.addOverlay(circle);
