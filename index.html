@@ -28,13 +28,14 @@ map.enableScrollWheelZoom(true);
 // 设置鼠标滚轮缩放
 
 //步行规划
+/*
 map.centerAndZoom(new BMap.Point(115.929442,28.683231), 15); 
     var walk = new BMap.WalkingRoute(map, { 
     renderOptions: {map: map} 
 }); 
 var start = new BMap.Point(115.930952,28.68171);//设置起点
 var end = new BMap.Point(115.919907,28.686634);//设置终点
-walk.search(start, end);
+walk.search(start, end);*/
 
 //路线规划函数
 function line(start,end){
@@ -58,10 +59,18 @@ geolocation.getCurrentPosition(function(r){
 		var mk = new BMap.Marker(r.point);
 		map.addOverlay(mk);
 		map.panTo(r.point);
-		alert('您的位置：'+r.point.lng+','+r.point.lat);
-		window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
-		window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat
-	}
+		confirm('您的位置：'+r.point.lng+','+r.point.lat);
+		if(confirm=true)
+		{
+		window.location.href='uniwebview:/ndgeolng?geolng='+r.point.lng
+		window.location.href='uniwebview:/ndgeolat?geolat='+r.point.lat
+		}else
+		{
+		window.location.href='uniwebview:/ndgeolng?geolng='+r.point.lng
+		window.location.href='uniwebview:/ndgeolat?geolat='+r.point.lat	
+		}
+		//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		}	
 	else {
 		alert('failed'+this.getStatus());
 	}        
