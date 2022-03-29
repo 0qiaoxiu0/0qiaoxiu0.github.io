@@ -59,17 +59,11 @@ geolocation.getCurrentPosition(function(r){
 		var mk = new BMap.Marker(r.point);
 		map.addOverlay(mk);
 		map.panTo(r.point);
-		confirm('您的位置：'+r.point.lng+','+r.point.lat);
-		if(confirm=true)
-		{
+        alert('您的位置：'+r.point.lng+','+r.point.lat)
+		window.addEventListener("click",sendgeo);
+		function sendgeo(){
 		window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
-		window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat
-		}else
-		{
-		window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
-		window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat	
-		}
-		//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat}
 		}	
 	else {
 		alert('failed'+this.getStatus());
@@ -77,7 +71,7 @@ geolocation.getCurrentPosition(function(r){
 });  
 //点击显示坐标和点
 	function showInfo(e){
-		//map.clearOverlays();
+		map.clearOverlays(mark)
 		alert(e.point.lng + ", " + e.point.lat);
 			var mk=new BMap.Marker(e.point);
 			map.addOverlay(mk);
