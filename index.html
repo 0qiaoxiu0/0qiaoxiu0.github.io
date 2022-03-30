@@ -59,9 +59,11 @@ body{height:100%;margin:0px;padding:0px}
 				var mk = new BMap.Marker(r.point);
 				map.addOverlay(mk);
 				map.panTo(r.point);
+				/*
 				function sendgeo(){
 					window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
 					window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat}
+					*/
         		alert('您的位置：'+r.point.lng+','+r.point.lat)
 				}	
 			else {
@@ -93,16 +95,20 @@ body{height:100%;margin:0px;padding:0px}
             address += e.addressComponent.street;
             address += e.addressComponent.streetNumber;
             alert("当前定位地址为：" +address+e.point.lng+','+e.point.lat);
+			window.location.href='uniwebview://sendgeolng?geolng='+e.point.lng
+			window.location.href='uniwebview://sendgeolat?geolat='+e.point.lat
         });
         locationControl.addEventListener("locationError",function(e){
             alert(e.message);
         });
+		/*
 		locationControl.addEventListener("click",sendgeo);
         function sendgeo(e){
 			window.location.href='uniwebview://sendgeolng?geolng='+e.point.lng
 			window.location.href='uniwebview://sendgeolat?geolat='+e.point.lat}
-		/*
+		*/
 		//自定义控件
+		/*
         function ZoomControl() {
             this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
             this.defaultOffset = new BMap.Size(20, 20)
@@ -127,7 +133,6 @@ body{height:100%;margin:0px;padding:0px}
             div.onclick = function(e){
                 map.setZoom(map.getZoom() + 2);
             }
-			div.addEventListener("click",sendgeo);
             // 添加DOM元素到地图中
             map.getContainer().appendChild(div);
             // 将DOM元素返回
