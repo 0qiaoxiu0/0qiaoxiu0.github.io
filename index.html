@@ -53,23 +53,20 @@ body{height:100%;margin:0px;padding:0px}
 
 
 		//定位
+		/*
 		var geolocation = new BMap.Geolocation();
 		geolocation.getCurrentPosition(function(r){
 			if(this.getStatus() == BMAP_STATUS_SUCCESS){
 				var mk = new BMap.Marker(r.point);
 				map.addOverlay(mk);
 				map.panTo(r.point);
-				/*
-				function sendgeo(){
-					window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
-					window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat}
-					*/
         		alert('您的位置：'+r.point.lng+','+r.point.lat)
 				}	
 			else {
 				alert('failed'+this.getStatus());
 			}        
 		});
+		*/
 		/*
 		function sendgeo(){
 		window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
@@ -95,8 +92,10 @@ body{height:100%;margin:0px;padding:0px}
             address += e.addressComponent.street;
             address += e.addressComponent.streetNumber;
             alert("当前定位地址为：" +address+e.point.lng+','+e.point.lat);
+			/*
 			window.location.href='uniwebview://sendgeolng?geolng='+e.point.lng
 			window.location.href='uniwebview://sendgeolat?geolat='+e.point.lat
+			*/
         });
         locationControl.addEventListener("locationError",function(e){
             alert(e.message);
@@ -108,7 +107,6 @@ body{height:100%;margin:0px;padding:0px}
 			window.location.href='uniwebview://sendgeolat?geolat='+e.point.lat}
 		*/
 		//自定义控件
-		/*
         function ZoomControl() {
             this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
             this.defaultOffset = new BMap.Size(20, 20)
@@ -130,9 +128,28 @@ body{height:100%;margin:0px;padding:0px}
             div.style.borderRadius = "5px";
             div.style.backgroundColor = "white";
             // 绑定事件,点击一次放大两级
-            div.onclick = function(e){
-                map.setZoom(map.getZoom() + 2);
-            }
+            //div.onclick = function(e){
+            //    map.setZoom(map.getZoom() + 2);
+            //}
+			function sendgeo()
+				{
+					var geolocation = new BMap.Geolocation();
+					geolocation.getCurrentPosition(function(r)
+						{
+							if(this.getStatus() == BMAP_STATUS_SUCCESS)
+							{
+								var mk = new BMap.Marker(r.point);
+								alert(r.point.lng);
+								window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
+								window.location.href='uniwebview://sendgeolat?geolat='+r.point.lat
+							}
+							else {
+								alert('failed'+this.getStatus());
+								}    
+						})
+					
+				}
+			div.addEventListener("click",sendgeo)
             // 添加DOM元素到地图中
             map.getContainer().appendChild(div);
             // 将DOM元素返回
@@ -142,7 +159,6 @@ body{height:100%;margin:0px;padding:0px}
         var myZoomCtrl = new ZoomControl();
         //添加到地图中
         map.addControl(myZoomCtrl);		
-		*/
   
 //点击显示坐标和点
 	function showInfo(e){
