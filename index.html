@@ -38,18 +38,16 @@ body{height:100%;margin:0px;padding:0px}
 		walk.search(start, end);*/
 
 		//路线规划函数
-		function line(start,end){
-			//map.clearOverlays();
-	
-			var walking = new BMap.WalkingRoute(map, { 
+		function lines(slng,slat,elng,elat){
+				var walking=new BMap.WalkingRoute(map, { 
     		renderOptions: { 
         		map: map, 
         		autoViewport: true 
     		}});
-		var start = new BMap.Point(lat, lnt);
-		var end = new BMap.Point(lat, lnt);
+		var start = new BMap.Point(slng, slat);
+		var end = new BMap.Point(elng, elat);
 		walking.search(start, end);
-			}
+			}	
 		//定位
 		/*
 		var geolocation = new BMap.Geolocation();
@@ -127,8 +125,8 @@ body{height:100%;margin:0px;padding:0px}
             //div.onclick = function(e){
             //    map.setZoom(map.getZoom() + 2);
             //}
-			
 			div.onclick=function(e){
+				alert("请点击地图选择您想去的地方，然后点击左下角导航按钮开始导航");
 				var geolocation = new BMap.Geolocation();
 		geolocation.getCurrentPosition(function(r){
 			window.location.href='uniwebview://sendgeolng?geolng='+r.point.lng
